@@ -1,3 +1,10 @@
+# Discover Page:
+for discovering music, the homepage of the app
+
+Importing Error, Loader and SongCard components from components folder
+
+
+
 # Project Lyrics
 
 Develop an elegant React.js Music Application. 
