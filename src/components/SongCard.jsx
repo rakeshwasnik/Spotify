@@ -49,7 +49,7 @@ const SongCard = ({ song, isPlaying, activeSong, i, data }) => {
       </div>
     </div>
   );
-..
+
 };
 
 export default SongCard;
