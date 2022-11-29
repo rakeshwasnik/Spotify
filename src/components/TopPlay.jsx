@@ -5,7 +5,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode } from "swiper";
 
 import PlayPause from "./PlayPause";
-import { playPause } from "../redux/features/playerSlice";
+import { playPause, setActiveSong } from "../redux/features/playerSlice";
 import { useGetTopChartsQuery } from "../redux/services/shazamCore";
 
 import "swiper/css";
@@ -19,6 +19,8 @@ const TopPlay = () => {
   const { data } = useGetTopChartsQuery();
   const divRef = useRef(null);
 
+  const topPlays = data?.slice(0,5)
+
   const handlePauseClick = () => {
     dispatch(playPause(false));
   };
@@ -27,6 +29,13 @@ const TopPlay = () => {
     dispatch(setActiveSong({ song, data, i }));
     dispatch(playPause(true));
   };
+
+  return (
+    <div>
+      
+    </div>
+  )
+
 };
 
 export default TopPlay;
