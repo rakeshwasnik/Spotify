@@ -19,6 +19,10 @@ const TopPlay = () => {
   const { data } = useGetTopChartsQuery();
   const divRef = useRef(null);
 
+  useEffect(() => {
+    divRef.current.scrollIntoView({ behaviour: 'smooth' })
+  }, []);
+
   const topPlays = data?.slice(0,5)
 
   const handlePauseClick = () => {
@@ -31,7 +35,7 @@ const TopPlay = () => {
   };
 
   return (
-    <div>
+    <div ref={divRef}>
       
     </div>
   )
