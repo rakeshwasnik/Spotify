@@ -9,6 +9,21 @@ const SongDetails = () => {
     const { songid } = useParams();
     const { activeSong, isPlaying } = useSelector((state) => state.player);
     const { data: songData, isFetching: isFetchingSongDetails } = useGetSongDetailsQuery({songid});
+    const { data, isFetching: isFetchingRelatedSongs, error } = useGetSongDetailsQuery({songid});
+
+    if (isFetchingSongDetails || isFetchingRelatedSongs) return 
+    <Loader title="Searching song details" />; 
+
+    const handlePauseClick = () => {
+        dispatch(playPause(false));
+      };
+    
+      const handlePlayClick = (song, i) => {
+        dispatch(setActiveSong({ song, data, i }));
+        dispatch(playPause(true));
+      };
+    
+    if (error) return <Error />;
 
     return (
         <div className="flex flex-col">
@@ -23,6 +38,13 @@ const SongDetails = () => {
                     )) : <p className="text-gray-400 text-base my-1">Sorry, no lyrics found!</p> }
                 </div>
             </div>
+            <RelatesSongs 
+                data={data}
+                isPlaying={isPlaying}
+                activeSong={activeSong}
+                handlePauseClick={handlePauseClick}
+                handlePlayClick={handlePlayClick}
+            />
         </div>
     )
 }
